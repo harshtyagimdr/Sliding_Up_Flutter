@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+
     // TODO: implement build
    return   MaterialApp(
     home: Scaffold(
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget{
   );
       
   }}
+  
   Widget _floatingCollapsed(){
   return Container(
     decoration: BoxDecoration(
@@ -72,23 +74,49 @@ Widget _floatingPanel(){
               leading: Icon(Icons.edit,color: Colors.orange,),
               
               title: Text("Address: abc..."),
-              trailing: Icon(Icons.arrow_drop_down,color:Colors.orange,),
+              trailing:  DropdownButton<String>(
+                hint: Text("address"),
+                  // value: address,
+                  items: <String>['Address1','Address2'].map((String value) {
+                  return new DropdownMenuItem<String>(
+                  // value: '12:00-2:00PM',
+                  child: new Text(value),
+              );
+            }).toList(),
+                onChanged: (_) {},
+              ),
             ),
             Divider(color: Colors.orangeAccent,),
             ListTile(
               leading: 
-                  Text("Delivering between: 5 A.M-7 A.M"),
-                  title:
-                  Icon(Icons.arrow_drop_down_circle,color:Colors.orange),
-
-               
+                  Container(constraints: BoxConstraints(maxWidth: 96),
+                  child: Text("Delivering between: ",softWrap: true,)),
+                  trailing:  DropdownButton<String>(
+                  hint: Text("5 A.M-7 A.M"),
+                  items: <String>['12:00-2:00 PM', '2:00-4:00 PM', '4:00-6:00 PM', '6:00-8:00 PM','8:00-10:00 PM','10:00-12:00 PM','12:00-2:00 AM', '2:00-4:00 AM', '4:00-6:00 AM', '6:00-8:00 AM','8:00-10:00 AM','10:00-12:00 AM'].map((String value) {
+                  return new DropdownMenuItem<String>(
+                  value: '12:00-2:00PM',
+                  child: new Text(value),
+              );
+            }).toList(),
+                onChanged: (_) {},
+              ),
+                                
             ),
             Padding(
+              
               padding: EdgeInsets.only(left: 0,right: 0),
               child: Container(
-                padding: EdgeInsets.only(left:3,right: 3),
+                decoration: BoxDecoration(
+     
+                  borderRadius: BorderRadius.all( Radius.circular(24.0),),
+                  
+                  color: Colors.orange.withOpacity(0.8),
+                ),
+                margin: const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 0.0),
                 
-                color: Colors.orange.withOpacity(0.8),
+                
+                // color: Colors.orange.withOpacity(0.8),
                 child: Column(
                   
                   children: <Widget>[
@@ -108,16 +136,42 @@ Widget _floatingPanel(){
                     
                       leading: Text("Offer Applied",style:TextStyle(color: Colors.white)),
                       trailing: Text("100",style:TextStyle(color: Colors.white)),
-                    )
+                    ),
+                  
                   ],
+                  
+                ),
+
+              ),
+              
+            ),
+          
+              
+              Container(
+                padding: EdgeInsets.only(left:24.0,top:10.0),
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                
+                                child: RaisedButton(
+
+                         color: Colors.orange,
+
+                          child: Text(
+                            "Check out",
+                            style: TextStyle(color:Colors.white),
+                          ),
+                          onPressed: (){},
+                        ),
+                        
                 ),
               ),
-            )
+              
           ],
         ),
       ),
 
     
   );
-}  
- 
+
+
+}
